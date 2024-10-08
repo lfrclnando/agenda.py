@@ -1,8 +1,14 @@
-# Adding contact
+# Adding contacts
 def add_contact(agenda, name, phone, email, favorite):
-    contact = ("contato", {"nome": name, "telefone": phone, "e-mail": email, "favorito": False})
+    contact = ("contato", {"nome": name, "telefone": phone, "e-mail": email, "favorito": favorite})
     agenda.append(contact)
-    print(f"Foi adicionado com sucesso o \ncontato' {name}', \ntelefone '{phone}', \ne-mail '{email}' \nEstá marcado como favorito? '{favorite}'")
+    print(f"Foi adicionado com sucesso o contato:\n'{name}'; \ntelefone '{phone}'; \ne-mail '{email}'; \nEstá marcado como favorito? '{favorite}'")
+    return
+
+# See contacts
+def see_contacts(agenda):
+    for indice, (contact, info) in enumerate(agenda, start=1):
+        print(f"{indice}. {info['nome']} - {info['telefone']} - {info['e-mail']} - Favorito: {info['favorito']}")
     return
 
 agenda = []
@@ -23,9 +29,10 @@ while True:
         name = input("Digite o nome: ")
         phone = input("Digite o telefone: ")
         email = input("Digite o e-mail: ")
-        favorite = input("Digite sim se o contato for favorito: ")
+        favorite = input("O contato é favorito? Sim ou Não: ")
         add_contact(agenda, name.capitalize(), phone, email, favorite.capitalize())
-        
+    elif desire == 2:
+        see_contacts(agenda)
     elif desire == 9:
         break
 print("Programa Finalizado...")
