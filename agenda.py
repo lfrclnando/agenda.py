@@ -12,7 +12,7 @@ def see_one_contact(agenda):
         contact, info = agenda[indice - 1]
         print(f"{info['nome']} - {info['telefone']} - {info['e-mail']} - Favorito: {info['favorito']}")
     else:
-        print("Registro não encontrado!")
+        print("Contato não encontrado!")
     return
 
 # See contacts
@@ -63,6 +63,16 @@ def see_favorite_contacts(agenda, indice_contact):
             print(f"{indice_contact}. {info['nome']} - {info['telefone']} - {info['e-mail']} - Favorito: {info['favorito']}")
     return
 
+# Delete contact
+def delete_contact(agenda):
+    indice_contact = int(input("Digite o número do contato a ser apagado: "))
+    if 0 < indice_contact <= len(agenda):
+        contact, info = agenda.pop(indice_contact - 1)
+        print(f"Contato '{info['nome']}' apagado com sucesso!")
+    else:
+        print("Contato não encontrado!")
+    return
+
 agenda = []
 while True:
     print("\nBEM VINDO(A) À SUA AGENDA!!!\n")
@@ -75,7 +85,7 @@ while True:
     print("7. Apagar um contato")
     print("8. Sair")
 
-    desire = int(input("\nDigite um número de 1 ao 9 para escolher: "))
+    desire = int(input("\nDigite um número de 1 ao 8 para escolher: "))
     if desire == 1:
         name = input("Digite o nome: ")
         phone = input("Digite o telefone: ")
@@ -99,8 +109,9 @@ while True:
         toggle_favorite(agenda, indice_contact)
     elif desire == 6:
         see_favorite_contacts(agenda, indice_contact)
-    
-
+    elif desire == 7:
+        delete_contact(agenda)
+        see_contacts(agenda)
     elif desire == 8:
         break
 print("Programa Finalizado...")
