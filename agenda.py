@@ -56,11 +56,14 @@ def toggle_favorite(agenda, indice_contact):
         print("Contato não encontrado!")
     return
 
-# See favorites contacts
-def see_favorite_contacts(agenda, indice_contact):
-    for indice_contact, (contact, info) in enumerate(agenda, start=1):
-        if info["favorito"] == "Sim":
-            print(f"{indice_contact}. {info['nome']} - {info['telefone']} - {info['e-mail']} - Favorito: {info['favorito']}")
+# See favorites
+def see_favorites(agenda):
+    favorites = [info for contact, info in agenda if info["favorito"] == "Sim"]
+    if favorites:
+        for indice, info in enumerate(favorites, start=1):
+            print(f"{indice}. {info['nome']} - {info['telefone']} - {info['e-mail']} - {info['favorito']}")
+    else:
+        print("Nenhum contato favorito encontrado!")
     return
 
 # Delete contact
@@ -108,11 +111,10 @@ while True:
         indice_contact = int(input("Digite o número do contato: "))
         toggle_favorite(agenda, indice_contact)
     elif desire == 6:
-        see_favorite_contacts(agenda, indice_contact)
+        see_favorites(agenda)
     elif desire == 7:
         delete_contact(agenda)
         see_contacts(agenda)
     elif desire == 8:
         break
-print("Programa Finalizado...")
-       
+print("Agenda Finalizada...")       
