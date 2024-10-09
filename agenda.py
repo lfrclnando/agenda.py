@@ -38,6 +38,7 @@ def edit_contact(agenda, indice_contact, new_name, new_phone, new_email, new_fav
     else:
         print("Contato não encontrado!")
 
+# Formatting favorites
 def format_favorite(value):
     if value.lower() in ('sim', 's'):
         return "Sim"
@@ -55,7 +56,7 @@ def toggle_favorite(agenda, indice_contact):
         print("Contato não encontrado!")
     return
 
-# See favorite contacts
+# See favorites contacts
 def see_favorite_contacts(agenda, indice_contact):
     for indice_contact, (contact, info) in enumerate(agenda, start=1):
         if info["favorito"] == "Sim":
@@ -70,10 +71,9 @@ while True:
     print("3. Ver uma lista de todos os contatos")
     print("4. Editar um contato")
     print("5. Marcar/Desmarcar um contato como favorito")
-    print("6. Ver um contato favorito")
-    print("7. Ver uma lista dos contatos favoritos")
-    print("8. Apagar um contato")
-    print("9. Sair")
+    print("6. Ver uma lista dos contatos favoritos")
+    print("7. Apagar um contato")
+    print("8. Sair")
 
     desire = int(input("\nDigite um número de 1 ao 9 para escolher: "))
     if desire == 1:
@@ -97,9 +97,11 @@ while True:
     elif desire == 5:
         indice_contact = int(input("Digite o número do contato: "))
         toggle_favorite(agenda, indice_contact)
-    elif desire == 7:
+    elif desire == 6:
         see_favorite_contacts(agenda, indice_contact)
-    elif desire == 9:
+    
+
+    elif desire == 8:
         break
 print("Programa Finalizado...")
        
